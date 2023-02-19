@@ -1,0 +1,27 @@
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+ name: hello-world-app
+description: main application pipeline
+serialPipeline:
+ stages:
+ - targetId: dev
+   profiles: []
+
+
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+ name: dev
+description: development cluster
+gke:
+ cluster: projects/searce-playground-v1/locations/asia-south1-a/clusters/pranav-test-cluster
+executionConfigs:
+- defaultPool:
+    serviceAccount: ay-cicd@searce-playground-v1.iam.gserviceaccount.com
+  usages:
+  - RENDER  
+  - DEPLOY    
+ 

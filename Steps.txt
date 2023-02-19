@@ -1,0 +1,25 @@
+## Jenkins Pipeline
+
+1. Gcloud Authentication
+2. Artifact Registry Authentication
+3. Docker build with Tag 
+4. Docker push to Artifact Registry 
+5. Cloud Deploy Release Create 
+
+
+## Create a Pipeline and Register a Target Cluster 
+
+gcloud deploy apply --file=clouddeploy.yaml --region=asia-south1 --project=searce-playground-v1
+
+
+## Create a Release and Deploy manifest to Target Cluster 
+
+gcloud deploy releases create release-xxx \
+  --project=searce-playground-v1 \
+  --region=asia-south1 \
+  --delivery-pipeline=hello-world-app \
+  --images=hello-world-app=asia-south1-docker.pkg.dev/searce-playground-v1/pranav-repo/hello-world-app:<TAG>
+
+
+
+
